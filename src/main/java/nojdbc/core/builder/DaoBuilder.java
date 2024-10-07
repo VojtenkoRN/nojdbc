@@ -7,7 +7,6 @@ import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.agroal.api.AgroalDataSource;
-import io.smallrye.common.annotation.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -157,7 +156,6 @@ public final class DaoBuilder {
               .setRequestType(requestType);
 
         final var method = MethodSpec.methodBuilder(methodName)
-              .addAnnotation(Blocking.class)
               .addAnnotation(Override.class)
               .addModifiers(Modifier.PUBLIC)
               .addParameters(params.stream().map(RequestParam::spec).toList())
@@ -198,7 +196,6 @@ public final class DaoBuilder {
               .setRequestType(RequestType.SELECT);
 
         final var method = MethodSpec.methodBuilder(methodName)
-              .addAnnotation(Blocking.class)
               .addAnnotation(Override.class)
               .addModifiers(Modifier.PUBLIC)
               .addParameters(params.stream().map(RequestParam::spec).toList())
